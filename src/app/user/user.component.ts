@@ -1,4 +1,4 @@
-import { Component, signal, computed, Input } from '@angular/core';
+import { Component, signal, computed, Input, input } from '@angular/core';
 
 // -- Just for 1 user --
 /**
@@ -49,8 +49,11 @@ export class UserComponent {
   // Getting the input from the parent component - App
   /**
    * NOTE
+   * Option A -> Using Input decorator
    * required -> true -> means that this property is required, otherwise IDE will throw an error
    */
+
+  /**
   @Input({
     required: true
   }) avatar !: string;
@@ -58,11 +61,21 @@ export class UserComponent {
   @Input({
     required: true
   }) name !: string;
-  
+  */
+
+  /**
+   * NOTE
+   * Option B -> Using input signal
+   * In here the input signal, it is READ ONLY
+   * So you cannot change it using set method
+   */
+  avatar = input.required<string>();
+  name = input.required<string>();
+
   // Use signal to change the imagePath
-  imagePath = computed(() => 'assets/users/' + this.avatar)
-  
+  imagePath = computed(() => 'assets/users/' + this.avatar())
+
   onSelectUser() {
-    
+
   }
 }

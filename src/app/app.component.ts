@@ -16,14 +16,14 @@ import { DUMMY_USERS } from './dummy-users';
   imports: [
     HeaderComponent,
     UserComponent
-],
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 
 export class AppComponent {
   users = DUMMY_USERS;
-  
+
   /** 
    * NOTE
    * Above code is a property that's why you don't need the let OR const keyword

@@ -1,10 +1,14 @@
 <div>
     <!-- (click) is an event listener like onclick -->
     <button (click)="onSelectUser()">
+
+        <!-- Attribute Binding -->
         <img 
             [src]="imagePath()" 
-            [alt]="name"
+            [alt]="name()"
         />
-        <span>{{ name }}</span>
+
+        <!-- When we got the data from the Typescript, we do it like this -->
+        <span>{{ name() }}</span>
     </button>
 </div>
