@@ -1,4 +1,4 @@
-import { Component, signal, computed, Input, input } from '@angular/core';
+import { Component, signal, computed, Input, input, Output, EventEmitter } from '@angular/core';
 
 // -- Just for 1 user --
 /**
@@ -53,7 +53,10 @@ export class UserComponent {
    * required -> true -> means that this property is required, otherwise IDE will throw an error
    */
 
-  /**
+  @Input({
+    required: true
+  }) id !: string;
+
   @Input({
     required: true
   }) avatar !: string;
@@ -61,21 +64,32 @@ export class UserComponent {
   @Input({
     required: true
   }) name !: string;
-  */
-
+  
+  // The <string> is optional
+  @Output() select = new EventEmitter<string>(); 
+  
   /**
    * NOTE
    * Option B -> Using input signal
    * In here the input signal, it is READ ONLY
    * So you cannot change it using set method
-   */
+  */
+ /**
   avatar = input.required<string>();
   name = input.required<string>();
+  
+  // The <string> is MANDATORY in here
+  select = output<string>();
+  */
 
-  // Use signal to change the imagePath
-  imagePath = computed(() => 'assets/users/' + this.avatar())
+  // Option A - User without signal for imagePath
+  get imagePath() {
+    return 'assets/users/' + this.avatar;
+  }
+  // Option B - Use signal to change the imagePath
+  // imagePath = computed(() => 'assets/users/' + this.avatar())
 
   onSelectUser() {
-
+    this.select.emit(this.id);
   }
 }

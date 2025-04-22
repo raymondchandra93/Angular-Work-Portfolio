@@ -22,11 +22,9 @@ import { DUMMY_USERS } from './dummy-users';
 })
 
 export class AppComponent {
-  users = DUMMY_USERS;
-
   /** 
    * NOTE
-   * Above code is a property that's why you don't need the let OR const keyword
+   * Below code for users = DUMMY_USERS is a property that's why you don't need the let OR const keyword
    * This is like a constructor actually in Typescript
    * 
    * However, Typescript allows you to write it like that
@@ -39,5 +37,10 @@ export class AppComponent {
       }
    * 
    */
+  users = DUMMY_USERS;
 
+
+  onSelectUser(id: string) {
+    console.log("Selected user with id: " + id)
+  }
 }
